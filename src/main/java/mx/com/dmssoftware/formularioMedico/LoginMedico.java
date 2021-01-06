@@ -15,22 +15,26 @@ import mx.com.dmssoftware.conexionBD.ConexionBD;
 
 /**
  *
- * @author dell
+ * @author Joseph
  */
 public class LoginMedico extends javax.swing.JFrame {
 
+    /*
+     *Objeto y clase para la conexión a la base de datos.
+     */
     ConexionBD cc = new ConexionBD();
     Connection con = cc.conexion();
 
-    /**
-     * Creates new form Login
-     */
     public LoginMedico() {
         initComponents();
         miImagen.setIcon(new ImageIcon("C:\\Users\\dell\\Desktop\\Cuadernos Virtuales 6to Semestre\\IngenieriaDeSoftware\\ProyectoFinal_JAVA\\DMS_Software\\src\\main\\java\\Imagenes\\dms.png"));
         this.setLocationRelativeTo(null);
     }
 
+    /*
+     *Este método identifica al usuario (Médico) que quiere ingresar al sistema, partiendo de un correo y una clave. Se valida
+     *e ingresa a la ventana MenuMedico.
+     */
     public void validarUsuario() {
 
         int resultado = 0;
@@ -53,7 +57,7 @@ public class LoginMedico extends javax.swing.JFrame {
 
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Error de Acceso. Médico no registrado :(");
+                JOptionPane.showMessageDialog(null, "Error de Acceso. Médico no registrado.");
             }
 
         } catch (Exception ex) {
@@ -203,6 +207,9 @@ public class LoginMedico extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    /*
+     *Método con evento para regresar a la ventana de RegistroMedico. 
+     */
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         RegistroMedico rmedico = new RegistroMedico();
         rmedico.setVisible(true);
