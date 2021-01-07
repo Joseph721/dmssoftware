@@ -20,7 +20,7 @@
             <groupId>org.netbeans.external</groupId>
             <artifactId>AbsoluteLayout</artifactId>
             <version>RELEASE120</version>
-        </dependency>
+        </dependency> 
     </dependencies>
     <name>DMS_Software</name>
 </project>

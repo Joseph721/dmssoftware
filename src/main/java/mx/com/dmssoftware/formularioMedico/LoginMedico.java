@@ -40,7 +40,7 @@ public class LoginMedico extends javax.swing.JFrame {
         int resultado = 0;
         String pass = String.valueOf(txtPassword.getPassword());
         String email = txtUser.getText();
-        String SQL = "SELECT *FROM registromedico WHERE Email = '" + email + "' AND pass = '" + pass + "';  ";
+        String SQL = "SELECT *FROM registromedico WHERE EmailMedico = '" + email + "' AND passMedico = '" + pass + "';";
 
         try {
             Statement st = con.createStatement();
@@ -57,7 +57,7 @@ public class LoginMedico extends javax.swing.JFrame {
 
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Error de Acceso. Médico no registrado.");
+                JOptionPane.showMessageDialog(null, "Error de Acceso. Email o contraseña incorrectos.");
             }
 
         } catch (Exception ex) {
