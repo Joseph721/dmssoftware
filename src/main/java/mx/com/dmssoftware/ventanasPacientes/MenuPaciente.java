@@ -1,10 +1,10 @@
 package mx.com.dmssoftware.ventanasPacientes;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Random;
+
 import javax.swing.JOptionPane;
 import mx.com.dmssoftware.conexionBD.ConexionBD;
 import mx.com.dmssoftware.dependencias.TextPrompt;
@@ -30,6 +30,8 @@ public class MenuPaciente extends javax.swing.JFrame {
         aceptarOpcion();
         agregarTextoPrompt();
         
+        
+        
         this.setLocationRelativeTo(null);
     }
     
@@ -49,6 +51,18 @@ public class MenuPaciente extends javax.swing.JFrame {
         jComboBoxAlergias.addItem("Si");
         jComboBoxAlergias.addItem("No");
         
+        jComboBoxMotivoCita.addItem("Dolor de (Garganta*, Musculos*, Cabeza*, Estómago, Oído*)");
+        jComboBoxMotivoCita.addItem("Suturas");
+        jComboBoxMotivoCita.addItem("Checado de presión");
+        jComboBoxMotivoCita.addItem("Consulta general");
+        jComboBoxMotivoCita.addItem("Inyección");
+        jComboBoxMotivoCita.addItem("Planificación familiar");
+        jComboBoxMotivoCita.addItem("Nebulizaciones");
+        jComboBoxMotivoCita.addItem("Curaciones");
+        jComboBoxMotivoCita.addItem("Lavado óptico");
+        jComboBoxMotivoCita.addItem("Prueba de nivel de azúcar (Glucosa)");
+        
+        
     }
     
     
@@ -62,10 +76,15 @@ public class MenuPaciente extends javax.swing.JFrame {
         TextPrompt tipoSangreP  = new TextPrompt("Ingrese su tipo de sangre...", txtTipoSangrePaciente);
         TextPrompt alergiaP  = new TextPrompt("Ingrese sus alergias separadas por coma...", txtAlergiaPaciente);
         
+        TextPrompt nombrePCita  = new TextPrompt("Ingrese un nombre...", txtNombresPCita);
+        TextPrompt apellidoPCita  = new TextPrompt("Ingrese un apellido...", txtApellidoPCita);
+        TextPrompt idCita  = new TextPrompt("Número de cita", txtNombresPCita);
+        
+        
     }
     
     private void registrarPaciente(){
-        
+      
         String genero = jComboBoxGenero.getSelectedItem().toString();
         String tipoSangre = jComboBoxTipoSangre.getSelectedItem().toString();
         String alergia = jComboBoxAlergias.getSelectedItem().toString();
@@ -90,6 +109,37 @@ public class MenuPaciente extends javax.swing.JFrame {
             
         } catch (Exception ex) {
            JOptionPane.showMessageDialog(null, "Error de registro" + ex.getMessage());
+        }
+    }
+    private void registrarCitaMedica(){
+        String fechaCita = jDateChooser1.getDate().toString();
+        String motivoCita = jComboBoxMotivoCita.getSelectedItem().toString();
+        
+        Random random= new Random(System.currentTimeMillis());
+        Integer numAleatorio = random.nextInt(150);
+        
+        String idCita = numAleatorio.toString();
+        
+        String sql = "INSERT INTO citasmedicas (nombrePaciente,apellidoPaciente,motivoCita,fechaCita,numCita) VALUES (?,?,?,?,?);";
+        
+        try{
+            PreparedStatement pst = conn.prepareStatement(sql);
+            
+            pst.setString(1, txtNombresPCita.getText());
+            pst.setString(2, txtApellidoPCita.getText());
+            pst.setString(3, motivoCita);
+            pst.setString(4, fechaCita);
+            pst.setString(5, idCita);
+            
+            txtIDCita.setText(idCita);
+            
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Se ha registrado al paciente...");
+            
+            
+            
+        }catch (Exception ex){
+            JOptionPane.showMessageDialog(null, "Error de cita" + ex.getMessage());
         }
     }
 
@@ -123,6 +173,16 @@ public class MenuPaciente extends javax.swing.JFrame {
         txtTipoSangrePaciente = new javax.swing.JTextField();
         jComboBoxGenero = new javax.swing.JComboBox<>();
         jPanelCitaPaciente = new javax.swing.JPanel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jLabel16 = new javax.swing.JLabel();
+        txtNombresPCita = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        txtIDCita = new javax.swing.JTextField();
+        btnSolicitarCita = new javax.swing.JButton();
+        jLabel18 = new javax.swing.JLabel();
+        jComboBoxMotivoCita = new javax.swing.JComboBox<>();
+        jLabel19 = new javax.swing.JLabel();
+        txtApellidoPCita = new javax.swing.JTextField();
         btnMenuPrincipal = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
 
@@ -227,7 +287,7 @@ public class MenuPaciente extends javax.swing.JFrame {
                         .addComponent(jLabel13)
                         .addGap(12, 12, 12)
                         .addComponent(jComboBoxGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(153, Short.MAX_VALUE))
+                .addContainerGap(151, Short.MAX_VALUE))
         );
         jPanelRegistroPaciente1Layout.setVerticalGroup(
             jPanelRegistroPaciente1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -292,18 +352,82 @@ public class MenuPaciente extends javax.swing.JFrame {
         jPanelCitaPaciente.setBackground(new java.awt.Color(133, 221, 246));
         jPanelCitaPaciente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jLabel16.setText("Nombre*");
+
+        jLabel17.setText("ID de Cita:");
+
+        txtIDCita.setEnabled(false);
+
+        btnSolicitarCita.setText("Solicitar");
+        btnSolicitarCita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSolicitarCitaActionPerformed(evt);
+            }
+        });
+
+        jLabel18.setText("Motivo de cita*");
+
+        jLabel19.setText("Apellido*");
+
         javax.swing.GroupLayout jPanelCitaPacienteLayout = new javax.swing.GroupLayout(jPanelCitaPaciente);
         jPanelCitaPaciente.setLayout(jPanelCitaPacienteLayout);
         jPanelCitaPacienteLayout.setHorizontalGroup(
             jPanelCitaPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 630, Short.MAX_VALUE)
+            .addGroup(jPanelCitaPacienteLayout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addGroup(jPanelCitaPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelCitaPacienteLayout.createSequentialGroup()
+                        .addComponent(btnSolicitarCita)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanelCitaPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCitaPacienteLayout.createSequentialGroup()
+                                .addComponent(jLabel17)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtIDCita, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(58, 58, 58))
+                    .addGroup(jPanelCitaPacienteLayout.createSequentialGroup()
+                        .addGroup(jPanelCitaPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelCitaPacienteLayout.createSequentialGroup()
+                                .addGroup(jPanelCitaPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(27, 27, 27)
+                                .addGroup(jPanelCitaPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtNombresPCita, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jComboBoxMotivoCita, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanelCitaPacienteLayout.createSequentialGroup()
+                                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(27, 27, 27)
+                                .addComponent(txtApellidoPCita, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 153, Short.MAX_VALUE))))
         );
         jPanelCitaPacienteLayout.setVerticalGroup(
             jPanelCitaPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 331, Short.MAX_VALUE)
+            .addGroup(jPanelCitaPacienteLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelCitaPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanelCitaPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNombresPCita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelCitaPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtApellidoPCita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
+                .addGroup(jPanelCitaPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxMotivoCita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                .addGroup(jPanelCitaPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSolicitarCita)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIDCita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(120, 120, 120))
         );
 
-        jTabbedPane2.addTab("Hacer cita", jPanelCitaPaciente);
+        jTabbedPane2.addTab("Solicitar cita", jPanelCitaPaciente);
 
         jPanel1.add(jTabbedPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 710, 340));
 
@@ -348,6 +472,10 @@ public class MenuPaciente extends javax.swing.JFrame {
         registrarPaciente();
     }//GEN-LAST:event_btnRegistroPacienteActionPerformed
 
+    private void btnSolicitarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitarCitaActionPerformed
+        registrarCitaMedica();
+    }//GEN-LAST:event_btnSolicitarCitaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -387,15 +515,22 @@ public class MenuPaciente extends javax.swing.JFrame {
     private javax.swing.JButton btnMenuPrincipal;
     private javax.swing.JButton btnRegistroPaciente;
     private javax.swing.JButton btnSalir;
+    private javax.swing.JButton btnSolicitarCita;
     private javax.swing.JComboBox<String> jComboBoxAlergias;
     private javax.swing.JComboBox<String> jComboBoxGenero;
+    private javax.swing.JComboBox<String> jComboBoxMotivoCita;
     private javax.swing.JComboBox<String> jComboBoxTipoSangre;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -407,8 +542,11 @@ public class MenuPaciente extends javax.swing.JFrame {
     private javax.swing.JTextField txtAlergiaPaciente;
     private javax.swing.JTextField txtApMaternoPaciente;
     private javax.swing.JTextField txtApPaternoPaciente;
+    private javax.swing.JTextField txtApellidoPCita;
     private javax.swing.JTextField txtFechaNacPaciente;
+    private javax.swing.JTextField txtIDCita;
     private javax.swing.JTextField txtLugarNacPaciente;
+    private javax.swing.JTextField txtNombresPCita;
     private javax.swing.JTextField txtNombresPaciente;
     private javax.swing.JTextField txtTipoSangrePaciente;
     // End of variables declaration//GEN-END:variables
