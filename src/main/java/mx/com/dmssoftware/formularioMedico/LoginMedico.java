@@ -40,7 +40,7 @@ public class LoginMedico extends javax.swing.JFrame {
         int resultado = 0;
         String pass = String.valueOf(txtPassword.getPassword());
         String email = txtUser.getText();
-        String SQL = "SELECT *FROM registromedico WHERE EmailMedico = '" + email + "' AND passMedico = '" + pass + "';";
+        String SQL = "SELECT *FROM registro_medicos WHERE EmailMedico = '" + email + "' AND passMedico = '" + pass + "';";
 
         try {
             Statement st = con.createStatement();

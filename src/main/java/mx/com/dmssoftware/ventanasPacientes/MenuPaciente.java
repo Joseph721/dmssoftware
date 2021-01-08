@@ -89,7 +89,7 @@ public class MenuPaciente extends javax.swing.JFrame {
         String tipoSangre = jComboBoxTipoSangre.getSelectedItem().toString();
         String alergia = jComboBoxAlergias.getSelectedItem().toString();
         
-        String sql = "INSERT INTO registropaciente (nombrePaciente,apellidoPaternoP,apellidoMaternoP,fechaNacPaciente,lugarNacPaciente,generoPaciente,tipoSangrePaciente,alergiaPaciente) VALUES (?,?,?,?,?,?,?,?);";
+        String sql = "INSERT INTO registro_pacientes (nombrePaciente,apellidoPaternoP,apellidoMaternoP,fechaNacPaciente,lugarNacPaciente,generoPaciente,tipoSangrePaciente,alergiaPaciente) VALUES (?,?,?,?,?,?,?,?);";
         
         try{
             PreparedStatement pst = conn.prepareStatement(sql);
@@ -120,7 +120,7 @@ public class MenuPaciente extends javax.swing.JFrame {
         
         String idCita = numAleatorio.toString();
         
-        String sql = "INSERT INTO citasmedicas (nombrePaciente,apellidoPaciente,motivoCita,fechaCita,numCita) VALUES (?,?,?,?,?);";
+        String sql = "INSERT INTO citas_medicas (nombrePaciente,apellidoPaciente,motivoCita,fechaCita,numCita) VALUES (?,?,?,?,?);";
         
         try{
             PreparedStatement pst = conn.prepareStatement(sql);

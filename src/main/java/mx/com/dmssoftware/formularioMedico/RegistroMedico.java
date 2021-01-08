@@ -28,7 +28,7 @@ public class RegistroMedico extends javax.swing.JFrame {
         
         
         String pass = String.valueOf(txtPassword.getPassword());
-        String sql = "INSERT INTO registromedico (NombreMedico, ApellidoPaterno, ApellidoMaterno, DireccionMedico, TelefonoMedico, EmailMedico, PassMedico, EspecialidadMedico,Alergia) values(?,?,?,?,?,?,?,?,?);";
+        String sql = "INSERT INTO registro_medicos (NombreMedico, ApellidoPaterno, ApellidoMaterno, DireccionMedico, TelefonoMedico, EmailMedico, PassMedico, EspecialidadMedico,Alergia) values(?,?,?,?,?,?,?,?,?);";
 
         
         try {
