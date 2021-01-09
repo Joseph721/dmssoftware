@@ -28,4 +28,39 @@
         </dependency>
     </dependencies>
     <name>DMS_Software</name>
+    <build>
+    <finalName>DMS_Software</finalName>
+    <plugins>
+
+        <!-- other Maven plugins ... -->
+
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <version>3.1.1</version>
+
+            <configuration>
+                <descriptorRefs>
+                    <descriptorRef>jar-with-dependencies</descriptorRef>
+                </descriptorRefs>
+                				<archive>
+					<manifest>
+						<mainClass>mx.com.dmssoftware.formularioMedico.LoginMedico</mainClass>
+					</manifest>
+				</archive>
+            </configuration>
+
+            <executions>
+                <execution>
+                    <id>make-assembly</id>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>single</goal>
+                    </goals>
+                </execution>
+            </executions>
+
+        </plugin>
+    </plugins>
+</build>
 </project>
