@@ -5,6 +5,7 @@
  */
 package mx.com.dmssoftware.formularioMedico;
 
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -12,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 import mx.com.dmssoftware.conexionBD.ConexionBD;
+import mx.com.dmssoftware.menuMP.MenuPrincipal;
 
 /**
  *
@@ -26,7 +28,12 @@ public class LoginMedico extends javax.swing.JFrame {
     Connection con = cc.conexion();
 
     public LoginMedico() {
+
         initComponents();
+        btnIngresar.setBackground(new Color(0, 67, 97));
+        btnRegresar.setBackground(new Color(0, 67, 97));
+        btnSalir.setBackground(new Color(0, 67, 97));
+
         miImagen.setIcon(new ImageIcon("C:\\Users\\dell\\Desktop\\Cuadernos Virtuales 6to Semestre\\IngenieriaDeSoftware\\ProyectoFinal_JAVA\\DMS_Software\\src\\main\\java\\Imagenes\\dms.png"));
         this.setLocationRelativeTo(null);
     }
@@ -75,150 +82,153 @@ public class LoginMedico extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
         miImagen = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        panel1 = new java.awt.Panel();
         txtUser = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        txtPassword = new javax.swing.JPasswordField();
+        jLabel10 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        btnSalir = new javax.swing.JButton();
+        txtPassword = new javax.swing.JPasswordField();
         btnIngresar = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 67, 97));
         setLocationByPlatform(true);
-        setMaximumSize(new java.awt.Dimension(769, 460));
         setMinimumSize(new java.awt.Dimension(769, 460));
+        setUndecorated(true);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
             }
         });
 
-        jPanel2.setBackground(new java.awt.Color(0, 67, 97));
-        jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel2.add(miImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 430));
+        miImagen.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(208, 247, 255), new java.awt.Color(208, 247, 255)));
 
-        jLabel2.setBackground(new java.awt.Color(208, 247, 255));
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 48)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(208, 247, 255));
-        jLabel2.setText("LOGIN");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 20, -1, -1));
+        panel1.setBackground(new java.awt.Color(0, 67, 97));
+        panel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 13)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(208, 247, 255));
-        jLabel4.setText("@dmssoftware.com.mx");
-        jLabel4.setToolTipText("");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 180, -1, 30));
-
+        txtUser.setBackground(new java.awt.Color(208, 247, 255));
         txtUser.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         txtUser.setForeground(new java.awt.Color(0, 154, 148));
         txtUser.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtUser.setToolTipText("Introduce tu email sin el dominio");
-        txtUser.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        txtUser.setToolTipText("");
+        txtUser.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(208, 247, 255), new java.awt.Color(208, 247, 255)));
         txtUser.setCaretColor(new java.awt.Color(0, 154, 148));
         txtUser.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txtUser.setName(""); // NOI18N
         txtUser.setOpaque(false);
-        jPanel2.add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 180, 220, 30));
+        panel1.add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 270, 30));
 
-        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(208, 247, 255));
-        jLabel3.setText("Contraseña:");
-        jLabel3.setToolTipText("");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 250, -1, -1));
-
-        txtPassword.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
-        txtPassword.setForeground(new java.awt.Color(0, 154, 148));
-        txtPassword.setToolTipText("Introduce la contraseña");
-        txtPassword.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        txtPassword.setCaretColor(new java.awt.Color(0, 154, 148));
-        txtPassword.setOpaque(false);
-        txtPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPasswordActionPerformed(evt);
-            }
-        });
-        jPanel2.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 280, 220, 30));
+        jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(208, 247, 255));
+        jLabel10.setText("Email:");
+        jLabel10.setToolTipText("");
+        panel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(208, 247, 255));
-        jLabel5.setText("Email:");
+        jLabel5.setText("Contraseña:");
         jLabel5.setToolTipText("");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 150, -1, -1));
+        panel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, -1, -1));
 
-        btnSalir.setBackground(new java.awt.Color(94, 215, 250));
-        btnSalir.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
-        btnSalir.setText("Salir");
-        btnSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalirActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 380, 100, 30));
+        txtPassword.setBackground(new java.awt.Color(208, 247, 255));
+        txtPassword.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        txtPassword.setForeground(new java.awt.Color(0, 154, 148));
+        txtPassword.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtPassword.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(208, 247, 255), new java.awt.Color(208, 247, 255)));
+        txtPassword.setCaretColor(new java.awt.Color(0, 154, 148));
+        panel1.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 270, 30));
 
-        btnIngresar.setBackground(new java.awt.Color(94, 215, 250));
-        btnIngresar.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        btnIngresar.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        btnIngresar.setForeground(new java.awt.Color(208, 247, 255));
         btnIngresar.setText("Ingresar");
+        btnIngresar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 234, 239), 3));
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIngresarActionPerformed(evt);
             }
         });
-        jPanel2.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 380, 100, 30));
+        panel1.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 110, 40));
 
-        btnRegresar.setBackground(new java.awt.Color(94, 215, 250));
-        btnRegresar.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        btnRegresar.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        btnRegresar.setForeground(new java.awt.Color(208, 247, 255));
         btnRegresar.setText("Regresar");
+        btnRegresar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 234, 239), 3));
         btnRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegresarActionPerformed(evt);
             }
         });
-        jPanel2.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 380, 100, 30));
+        panel1.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, 110, 40));
+
+        btnSalir.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        btnSalir.setForeground(new java.awt.Color(208, 247, 255));
+        btnSalir.setText("Salir");
+        btnSalir.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 234, 239), 3));
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
+        panel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 290, 110, 40));
+
+        jLabel2.setBackground(new java.awt.Color(208, 247, 255));
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 48)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(208, 247, 255));
+        jLabel2.setText("LOGIN");
+        panel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(208, 247, 255));
+        jLabel4.setText("@dmssoftware.com.mx");
+        jLabel4.setToolTipText("");
+        panel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 330, -1, 30));
+
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(208, 247, 255));
+        jLabel1.setText("@dmssoftware.com.mx");
+        panel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 150, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 854, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(miImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(miImagen, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPasswordActionPerformed
-
-    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        validarUsuario();
-    }//GEN-LAST:event_btnIngresarActionPerformed
+    }//GEN-LAST:event_formWindowClosed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    /*
-     *Método con evento para regresar a la ventana de RegistroMedico. 
-     */
+    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
+        validarCampos();
+    }//GEN-LAST:event_btnIngresarActionPerformed
+
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        RegistroMedico rmedico = new RegistroMedico();
-        rmedico.setVisible(true);
+        MenuPrincipal menu = new MenuPrincipal();
+        menu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
-
-    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments
@@ -260,13 +270,30 @@ public class LoginMedico extends javax.swing.JFrame {
     private javax.swing.JButton btnIngresar;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JButton btnSalir;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel miImagen;
+    private java.awt.Panel panel1;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
+
+    private void validarCampos() {
+        if (txtUser.getText().isEmpty() || txtPassword.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No puede dejar campos sin completar");
+        } else {
+            
+            validarUsuario();
+            limpiarCampos();
+
+        }
+    }
+
+    private void limpiarCampos() {
+        txtUser.setText("");
+        txtPassword.setText("");
+    }
 }

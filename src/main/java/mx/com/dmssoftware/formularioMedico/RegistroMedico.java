@@ -1,13 +1,16 @@
 package mx.com.dmssoftware.formularioMedico;
 
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 import mx.com.dmssoftware.conexionBD.ConexionBD;
+import mx.com.dmssoftware.dependencias.TextPrompt;
+import mx.com.dmssoftware.menuMP.ClaveLogin;
 
 /**
  *
- * @author dell
+ * @author Joseph
  */
 public class RegistroMedico extends javax.swing.JFrame {
 
@@ -19,18 +22,36 @@ public class RegistroMedico extends javax.swing.JFrame {
      */
     public RegistroMedico() {
         initComponents();
+        btnRegistrar.setBackground(new Color(0, 67, 97));
+        btnRegresar.setBackground(new Color(0, 67, 97));
+        btnSalir.setBackground(new Color(0, 67, 97));
+        agregarTextoPrompt();
         // miImagen2.setIcon(new ImageIcon("C:\\Users\\dell\\Desktop\\Cuadernos Virtuales 6to Semestre\\IngenieriaDeSoftware\\ProyectoFinal_JAVA\\DMS_Software\\src\\main\\java\\Imagenes\\dms.png"));
-     this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);
         //  btnRegistrar.setIcon(new ImageIcon("C:\\Users\\dell\\Desktop\\Cuadernos Virtuales 6to Semestre\\IngenieriaDeSoftware\\ProyectoFinal_JAVA\\DMS_Software\\src\\main\\java\\Imagenes\\folder.png"));
+
+        jComboBoxAlergiaMedico.addItem("Si");
+        jComboBoxAlergiaMedico.addItem("No");
+    }
+
+    private void agregarTextoPrompt() {
+        TextPrompt nombreP = new TextPrompt("Ingrese sus nombres...", txtNombres);
+        TextPrompt apellidoP = new TextPrompt("Ingrese su apellido paterno...", txtApellidoPaternoM);
+        TextPrompt apellidoM = new TextPrompt("Ingrese su apellido materno...", txtApellidoMaternoM);
+        TextPrompt direccionP = new TextPrompt("Ingrese una dirección corta...", txtDireccion);
+        TextPrompt telefonoP = new TextPrompt("Ingrese un número con lada...", txtTelefono);
+        // TextPrompt alergiaP = new TextPrompt("¿Tiene alguna alergia?...", jComboBoxAlergiaMedico.);
+        TextPrompt especialidadP = new TextPrompt("Ingrese una especialidad...", txtAreaEspecialidad);
+        TextPrompt emailP = new TextPrompt("Ingrese un email sin el dominio...", txtEmail);
+        TextPrompt passP = new TextPrompt("Ingrese una contraseña...", txtPassword);
+
     }
 
     public void agregarMedico() {
-        
-        
+        String alergia = jComboBoxAlergiaMedico.getSelectedItem().toString();
         String pass = String.valueOf(txtPassword.getPassword());
         String sql = "INSERT INTO registro_medicos (NombreMedico, ApellidoPaterno, ApellidoMaterno, DireccionMedico, TelefonoMedico, EmailMedico, PassMedico, EspecialidadMedico,Alergia) values(?,?,?,?,?,?,?,?,?);";
 
-        
         try {
             PreparedStatement pst = con.prepareStatement(sql);
 
@@ -42,15 +63,14 @@ public class RegistroMedico extends javax.swing.JFrame {
             pst.setString(6, txtEmail.getText());
             pst.setString(7, pass);
             pst.setString(8, txtAreaEspecialidad.getText());
-            pst.setString(9, txtAlergia.getText());
+            pst.setString(9, alergia);
 
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null, "Se ha registrado al médico en la base de datos");
 
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Error de registro" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error de registro " + ex.getMessage());
         }
-
 
 //        if(txtNombres.getText().length()==0 && txtApellidos.getText().length()==0 && txtDireccion.getText().length()==0 &&  txtTelefono.getText().length()==0 &&
 //                txtEmail.getText().length()==0 && txtPassword.getText().length()==0 && txtAreaEspecialidad.getText().length()==0 && txtAlergia.getText().length()==0){
@@ -60,8 +80,6 @@ public class RegistroMedico extends javax.swing.JFrame {
 //        }else{
 //            JOptionPane.showMessageDialog(null, "No puedes dejar campos vacíos.");
 //        }
-        
-        
     }
 
     /**
@@ -81,247 +99,256 @@ public class RegistroMedico extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        txtEmail = new javax.swing.JTextField();
-        txtNombres = new javax.swing.JTextField();
-        txtApellidoMaternoM = new javax.swing.JTextField();
-        txtDireccion = new javax.swing.JTextField();
-        txtAlergia = new javax.swing.JTextField();
-        txtPassword = new javax.swing.JPasswordField();
         jLabel11 = new javax.swing.JLabel();
-        txtTelefono = new javax.swing.JTextField();
         btnRegistrar = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
-        txtAreaEspecialidad = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
+        txtTelefono = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
         txtApellidoPaternoM = new javax.swing.JTextField();
+        txtApellidoMaternoM = new javax.swing.JTextField();
+        txtDireccion = new javax.swing.JTextField();
+        txtNombres = new javax.swing.JTextField();
+        txtAreaEspecialidad = new javax.swing.JTextField();
+        txtPassword = new javax.swing.JPasswordField();
+        jComboBoxAlergiaMedico = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(0, 67, 97));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(47, 205, 255), 3));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setBackground(new java.awt.Color(208, 247, 255));
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 48)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(208, 247, 255));
         jLabel2.setText("REGISTRO DE MÉDICO");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(208, 247, 255));
         jLabel5.setText("Contraseña:");
         jLabel5.setToolTipText("");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 250, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 370, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(208, 247, 255));
         jLabel6.setText("Apellido Materno:");
         jLabel6.setToolTipText("");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(208, 247, 255));
         jLabel7.setText("Nombre(s):");
         jLabel7.setToolTipText("");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(208, 247, 255));
         jLabel8.setText("Dirección:");
         jLabel8.setToolTipText("");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 300, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(208, 247, 255));
         jLabel9.setText("Alergia:");
         jLabel9.setToolTipText("");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 90, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 90, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(208, 247, 255));
         jLabel10.setText("Email:");
         jLabel10.setToolTipText("");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 180, -1, -1));
-
-        txtEmail.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
-        txtEmail.setForeground(new java.awt.Color(0, 154, 148));
-        txtEmail.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtEmail.setToolTipText("Introduce tu email sin el dominio");
-        txtEmail.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        txtEmail.setCaretColor(new java.awt.Color(0, 154, 148));
-        txtEmail.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        txtEmail.setName(""); // NOI18N
-        txtEmail.setOpaque(false);
-        jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 210, 190, 30));
-
-        txtNombres.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
-        txtNombres.setForeground(new java.awt.Color(0, 154, 148));
-        txtNombres.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtNombres.setToolTipText("Introduce tu email sin el dominio");
-        txtNombres.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        txtNombres.setCaretColor(new java.awt.Color(0, 154, 148));
-        txtNombres.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        txtNombres.setName(""); // NOI18N
-        txtNombres.setOpaque(false);
-        jPanel1.add(txtNombres, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 300, 30));
-
-        txtApellidoMaternoM.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
-        txtApellidoMaternoM.setForeground(new java.awt.Color(0, 154, 148));
-        txtApellidoMaternoM.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtApellidoMaternoM.setToolTipText("Introduce tu email sin el dominio");
-        txtApellidoMaternoM.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        txtApellidoMaternoM.setCaretColor(new java.awt.Color(0, 154, 148));
-        txtApellidoMaternoM.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        txtApellidoMaternoM.setName(""); // NOI18N
-        txtApellidoMaternoM.setOpaque(false);
-        jPanel1.add(txtApellidoMaternoM, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 300, 30));
-
-        txtDireccion.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
-        txtDireccion.setForeground(new java.awt.Color(0, 154, 148));
-        txtDireccion.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtDireccion.setToolTipText("Introduce tu email sin el dominio");
-        txtDireccion.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        txtDireccion.setCaretColor(new java.awt.Color(0, 154, 148));
-        txtDireccion.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        txtDireccion.setName(""); // NOI18N
-        txtDireccion.setOpaque(false);
-        jPanel1.add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 300, 30));
-
-        txtAlergia.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
-        txtAlergia.setForeground(new java.awt.Color(0, 154, 148));
-        txtAlergia.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtAlergia.setToolTipText("Introduce tu email sin el dominio");
-        txtAlergia.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        txtAlergia.setCaretColor(new java.awt.Color(0, 154, 148));
-        txtAlergia.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        txtAlergia.setName(""); // NOI18N
-        txtAlergia.setOpaque(false);
-        jPanel1.add(txtAlergia, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 120, 300, 30));
-
-        txtPassword.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
-        txtPassword.setForeground(new java.awt.Color(0, 154, 148));
-        txtPassword.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        txtPassword.setCaretColor(new java.awt.Color(0, 154, 148));
-        txtPassword.setOpaque(false);
-        txtPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPasswordActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 280, 190, 30));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 300, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(208, 247, 255));
         jLabel11.setText("Teléfono:");
         jLabel11.setToolTipText("");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, -1, -1));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 370, -1, -1));
 
-        txtTelefono.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
-        txtTelefono.setForeground(new java.awt.Color(0, 154, 148));
-        txtTelefono.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtTelefono.setToolTipText("Introduce tu email sin el dominio");
-        txtTelefono.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        txtTelefono.setCaretColor(new java.awt.Color(0, 154, 148));
-        txtTelefono.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        txtTelefono.setName(""); // NOI18N
-        txtTelefono.setOpaque(false);
-        jPanel1.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, 300, 30));
-
-        btnRegistrar.setBackground(new java.awt.Color(94, 215, 250));
-        btnRegistrar.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        btnRegistrar.setBackground(new java.awt.Color(0, 67, 97));
+        btnRegistrar.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        btnRegistrar.setForeground(new java.awt.Color(208, 247, 255));
         btnRegistrar.setText("Registrar");
+        btnRegistrar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 234, 239), 3));
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 400, 100, 30));
+        jPanel1.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 450, 100, 30));
 
         btnRegresar.setBackground(new java.awt.Color(94, 215, 250));
-        btnRegresar.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        btnRegresar.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        btnRegresar.setForeground(new java.awt.Color(208, 247, 255));
         btnRegresar.setText("Regresar");
-        jPanel1.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 400, 100, 30));
+        btnRegresar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 234, 239), 3));
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 450, 100, 30));
 
         btnSalir.setBackground(new java.awt.Color(94, 215, 250));
-        btnSalir.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        btnSalir.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        btnSalir.setForeground(new java.awt.Color(208, 247, 255));
         btnSalir.setText("Salir");
+        btnSalir.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 234, 239), 3));
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalirActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 400, 100, 30));
+        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 450, 100, 30));
 
         jLabel12.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(208, 247, 255));
         jLabel12.setText("Especialidad:");
         jLabel12.setToolTipText("");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 380, -1, -1));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 160, -1, -1));
 
-        txtAreaEspecialidad.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
-        txtAreaEspecialidad.setForeground(new java.awt.Color(0, 154, 148));
-        txtAreaEspecialidad.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtAreaEspecialidad.setToolTipText("Introduce tu email sin el dominio");
-        txtAreaEspecialidad.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        txtAreaEspecialidad.setCaretColor(new java.awt.Color(0, 154, 148));
-        txtAreaEspecialidad.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        txtAreaEspecialidad.setName(""); // NOI18N
-        txtAreaEspecialidad.setOpaque(false);
-        jPanel1.add(txtAreaEspecialidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 410, 300, 30));
-
-        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 13)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(208, 247, 255));
         jLabel4.setText("@dmssoftware.com.mx");
         jLabel4.setToolTipText("");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 210, -1, 30));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 330, -1, 30));
 
         jLabel13.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(208, 247, 255));
         jLabel13.setText("Apellido Paterno:");
         jLabel13.setToolTipText("");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, -1, -1));
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, -1, -1));
 
+        txtTelefono.setBackground(new java.awt.Color(208, 247, 255));
+        txtTelefono.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        txtTelefono.setForeground(new java.awt.Color(0, 154, 148));
+        txtTelefono.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtTelefono.setToolTipText("");
+        txtTelefono.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(208, 247, 255), new java.awt.Color(208, 247, 255)));
+        txtTelefono.setCaretColor(new java.awt.Color(0, 154, 148));
+        txtTelefono.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtTelefono.setName(""); // NOI18N
+        txtTelefono.setOpaque(false);
+        jPanel1.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 400, 270, 30));
+
+        txtEmail.setBackground(new java.awt.Color(208, 247, 255));
+        txtEmail.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        txtEmail.setForeground(new java.awt.Color(0, 154, 148));
+        txtEmail.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtEmail.setToolTipText("");
+        txtEmail.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(208, 247, 255), new java.awt.Color(208, 247, 255)));
+        txtEmail.setCaretColor(new java.awt.Color(0, 154, 148));
+        txtEmail.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtEmail.setName(""); // NOI18N
+        txtEmail.setOpaque(false);
+        jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 330, 270, 30));
+
+        txtApellidoPaternoM.setBackground(new java.awt.Color(208, 247, 255));
         txtApellidoPaternoM.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         txtApellidoPaternoM.setForeground(new java.awt.Color(0, 154, 148));
         txtApellidoPaternoM.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtApellidoPaternoM.setToolTipText("Introduce tu email sin el dominio");
-        txtApellidoPaternoM.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        txtApellidoPaternoM.setToolTipText("");
+        txtApellidoPaternoM.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(208, 247, 255), new java.awt.Color(208, 247, 255)));
         txtApellidoPaternoM.setCaretColor(new java.awt.Color(0, 154, 148));
         txtApellidoPaternoM.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txtApellidoPaternoM.setName(""); // NOI18N
         txtApellidoPaternoM.setOpaque(false);
-        jPanel1.add(txtApellidoPaternoM, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 300, 30));
+        jPanel1.add(txtApellidoPaternoM, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 190, 270, 30));
+
+        txtApellidoMaternoM.setBackground(new java.awt.Color(208, 247, 255));
+        txtApellidoMaternoM.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        txtApellidoMaternoM.setForeground(new java.awt.Color(0, 154, 148));
+        txtApellidoMaternoM.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtApellidoMaternoM.setToolTipText("");
+        txtApellidoMaternoM.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(208, 247, 255), new java.awt.Color(208, 247, 255)));
+        txtApellidoMaternoM.setCaretColor(new java.awt.Color(0, 154, 148));
+        txtApellidoMaternoM.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtApellidoMaternoM.setName(""); // NOI18N
+        txtApellidoMaternoM.setOpaque(false);
+        jPanel1.add(txtApellidoMaternoM, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 270, 30));
+
+        txtDireccion.setBackground(new java.awt.Color(208, 247, 255));
+        txtDireccion.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        txtDireccion.setForeground(new java.awt.Color(0, 154, 148));
+        txtDireccion.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtDireccion.setToolTipText("");
+        txtDireccion.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(208, 247, 255), new java.awt.Color(208, 247, 255)));
+        txtDireccion.setCaretColor(new java.awt.Color(0, 154, 148));
+        txtDireccion.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtDireccion.setName(""); // NOI18N
+        txtDireccion.setOpaque(false);
+        jPanel1.add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 330, 270, 30));
+
+        txtNombres.setBackground(new java.awt.Color(208, 247, 255));
+        txtNombres.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        txtNombres.setForeground(new java.awt.Color(0, 154, 148));
+        txtNombres.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtNombres.setToolTipText("");
+        txtNombres.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(208, 247, 255), new java.awt.Color(208, 247, 255)));
+        txtNombres.setCaretColor(new java.awt.Color(0, 154, 148));
+        txtNombres.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtNombres.setName(""); // NOI18N
+        txtNombres.setOpaque(false);
+        jPanel1.add(txtNombres, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 270, 30));
+
+        txtAreaEspecialidad.setBackground(new java.awt.Color(208, 247, 255));
+        txtAreaEspecialidad.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        txtAreaEspecialidad.setForeground(new java.awt.Color(0, 154, 148));
+        txtAreaEspecialidad.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtAreaEspecialidad.setToolTipText("");
+        txtAreaEspecialidad.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(208, 247, 255), new java.awt.Color(208, 247, 255)));
+        txtAreaEspecialidad.setCaretColor(new java.awt.Color(0, 154, 148));
+        txtAreaEspecialidad.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtAreaEspecialidad.setName(""); // NOI18N
+        txtAreaEspecialidad.setOpaque(false);
+        jPanel1.add(txtAreaEspecialidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 190, 270, 30));
+
+        txtPassword.setBackground(new java.awt.Color(208, 247, 255));
+        txtPassword.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        txtPassword.setForeground(new java.awt.Color(0, 154, 148));
+        txtPassword.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtPassword.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(208, 247, 255), new java.awt.Color(208, 247, 255)));
+        txtPassword.setCaretColor(new java.awt.Color(0, 154, 148));
+        jPanel1.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 400, 270, 30));
+
+        jComboBoxAlergiaMedico.setBackground(new java.awt.Color(208, 247, 255));
+        jComboBoxAlergiaMedico.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        jPanel1.add(jComboBoxAlergiaMedico, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 120, 270, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 809, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 888, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 446, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPasswordActionPerformed
-
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        agregarMedico();
-        LoginMedico login = new LoginMedico();
-        login.setVisible(true);
-        this.dispose();
+        validarCampos();
+
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-       System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        ClaveLogin loginMedico = new ClaveLogin();
+        loginMedico.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnRegresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -362,6 +389,7 @@ public class RegistroMedico extends javax.swing.JFrame {
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JButton btnSalir;
+    private javax.swing.JComboBox<String> jComboBoxAlergiaMedico;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -374,7 +402,6 @@ public class RegistroMedico extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtAlergia;
     private javax.swing.JTextField txtApellidoMaternoM;
     private javax.swing.JTextField txtApellidoPaternoM;
     private javax.swing.JTextField txtAreaEspecialidad;
@@ -384,5 +411,32 @@ public class RegistroMedico extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
+
+    private void validarCampos() {
+        if (txtNombres.getText().isEmpty() || txtApellidoPaternoM.getText().isEmpty() || txtApellidoMaternoM.getText().isEmpty()
+                || txtDireccion.getText().isEmpty() || txtTelefono.getText().isEmpty() || txtAreaEspecialidad.getText().isEmpty()
+                || txtEmail.getText().isEmpty() || txtPassword.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No puede dejar campos sin completar");
+        } else {
+            
+            agregarMedico();
+            limpiarText();
+            LoginMedico login = new LoginMedico();
+            login.setVisible(true);
+            this.dispose();
+        }
+
+    }
+
+    private void limpiarText() {
+        txtNombres.setText("");
+        txtApellidoPaternoM.setText("");
+        txtApellidoMaternoM.setText("");
+        txtDireccion.setText("");
+        txtTelefono.setText("");
+        txtAreaEspecialidad.setText("");
+        txtEmail.setText("");
+        txtPassword.setText("");
+    }
 
 }
