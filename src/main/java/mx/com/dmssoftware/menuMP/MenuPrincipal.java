@@ -6,6 +6,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import mx.com.dmssoftware.conexionBD.CerrarVentana;
 import mx.com.dmssoftware.dependencias.TextPrompt;
 import mx.com.dmssoftware.formularioMedico.LoginMedico;
 import mx.com.dmssoftware.ventanasPacientes.MenuPaciente;
@@ -42,12 +43,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
         btnInformacionNoticial = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         btnUsuario = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(0, 67, 97));
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(208, 247, 255), new java.awt.Color(208, 247, 255)));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(47, 205, 255), 3));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setBackground(new java.awt.Color(208, 247, 255));
@@ -103,6 +105,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jPanel1.add(btnUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 110, 180, 110));
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel1.setText("Versión 1.0.1");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -135,7 +141,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUsuarioActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-         System.exit(0);
+        CerrarVentana cerrar = new CerrarVentana();
+        cerrar.cerrarVentana();
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnInformacionNoticialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInformacionNoticialActionPerformed
@@ -196,6 +203,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnMedico;
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnUsuario;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

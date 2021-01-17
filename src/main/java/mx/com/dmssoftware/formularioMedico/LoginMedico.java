@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import mx.com.dmssoftware.conexionBD.CerrarVentana;
 
 import mx.com.dmssoftware.conexionBD.ConexionBD;
 import mx.com.dmssoftware.menuMP.MenuPrincipal;
@@ -109,6 +110,7 @@ public class LoginMedico extends javax.swing.JFrame {
         miImagen.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(208, 247, 255), new java.awt.Color(208, 247, 255)));
 
         panel1.setBackground(new java.awt.Color(0, 67, 97));
+        panel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         panel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtUser.setBackground(new java.awt.Color(208, 247, 255));
@@ -152,7 +154,7 @@ public class LoginMedico extends javax.swing.JFrame {
                 btnIngresarActionPerformed(evt);
             }
         });
-        panel1.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 110, 40));
+        panel1.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 110, 40));
 
         btnRegresar.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         btnRegresar.setForeground(new java.awt.Color(208, 247, 255));
@@ -163,7 +165,7 @@ public class LoginMedico extends javax.swing.JFrame {
                 btnRegresarActionPerformed(evt);
             }
         });
-        panel1.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, 110, 40));
+        panel1.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, 110, 40));
 
         btnSalir.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         btnSalir.setForeground(new java.awt.Color(208, 247, 255));
@@ -174,7 +176,7 @@ public class LoginMedico extends javax.swing.JFrame {
                 btnSalirActionPerformed(evt);
             }
         });
-        panel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 290, 110, 40));
+        panel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 310, 110, 40));
 
         jLabel2.setBackground(new java.awt.Color(208, 247, 255));
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 48)); // NOI18N
@@ -217,7 +219,8 @@ public class LoginMedico extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        System.exit(0);
+        CerrarVentana cerrar = new CerrarVentana();
+        cerrar.cerrarVentana();
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
@@ -285,7 +288,7 @@ public class LoginMedico extends javax.swing.JFrame {
         if (txtUser.getText().isEmpty() || txtPassword.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "No puede dejar campos sin completar");
         } else {
-            
+
             validarUsuario();
             limpiarCampos();
 

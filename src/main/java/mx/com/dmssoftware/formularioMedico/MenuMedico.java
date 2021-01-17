@@ -85,6 +85,7 @@ public class MenuMedico extends javax.swing.JFrame {
         btnEliminarPaciente = new javax.swing.JButton();
         btnConsultaPacientes = new javax.swing.JButton();
         jPanelConfiguraciones = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
         btnCerrarSesion = new javax.swing.JButton();
         btnMenu1 = new javax.swing.JButton();
 
@@ -93,7 +94,7 @@ public class MenuMedico extends javax.swing.JFrame {
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(0, 67, 97));
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(208, 247, 255), new java.awt.Color(208, 247, 255)));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(47, 205, 255), 3));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setBackground(new java.awt.Color(208, 247, 255));
@@ -110,6 +111,7 @@ public class MenuMedico extends javax.swing.JFrame {
         jPanelAgendaCita.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jPanelCitaPaciente.setBackground(new java.awt.Color(133, 221, 246));
+        jPanelCitaPaciente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(47, 205, 255), 3));
         jPanelCitaPaciente.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnSolicitarCita.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
@@ -203,11 +205,11 @@ public class MenuMedico extends javax.swing.JFrame {
         jPanelAgendaCita.setLayout(jPanelAgendaCitaLayout);
         jPanelAgendaCitaLayout.setHorizontalGroup(
             jPanelAgendaCitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelCitaPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanelCitaPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, 814, Short.MAX_VALUE)
         );
         jPanelAgendaCitaLayout.setVerticalGroup(
             jPanelAgendaCitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelCitaPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanelCitaPaciente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Agendar Cita Médica", jPanelAgendaCita);
@@ -275,13 +277,13 @@ public class MenuMedico extends javax.swing.JFrame {
         jLabel30.setForeground(new java.awt.Color(0, 154, 148));
         jLabel30.setText("Cantidad de citas almacenadas");
         jLabel30.setToolTipText("");
-        jPanel4.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 320, -1));
+        jPanel4.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 320, -1));
 
         jLabel31.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel31.setForeground(new java.awt.Color(0, 154, 148));
         jLabel31.setText("Citas medicas registradas");
         jLabel31.setToolTipText("");
-        jPanel4.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, 270, -1));
+        jPanel4.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 10, 270, -1));
 
         txtCitasAlmacenadas1.setBackground(new java.awt.Color(208, 247, 255));
         txtCitasAlmacenadas1.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
@@ -294,7 +296,7 @@ public class MenuMedico extends javax.swing.JFrame {
         txtCitasAlmacenadas1.setEnabled(false);
         txtCitasAlmacenadas1.setName(""); // NOI18N
         txtCitasAlmacenadas1.setOpaque(false);
-        jPanel4.add(txtCitasAlmacenadas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, 90, 30));
+        jPanel4.add(txtCitasAlmacenadas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 90, 30));
 
         btnEliminarCita.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         btnEliminarCita.setForeground(new java.awt.Color(208, 247, 255));
@@ -316,7 +318,7 @@ public class MenuMedico extends javax.swing.JFrame {
                 btnConsultaCitaPacientes1ActionPerformed(evt);
             }
         });
-        jPanel4.add(btnConsultaCitaPacientes1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 40, 180, 40));
+        jPanel4.add(btnConsultaCitaPacientes1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 40, 180, 40));
 
         jTabbedPane1.addTab("Consultar Cita Médica", jPanel4);
 
@@ -416,11 +418,18 @@ public class MenuMedico extends javax.swing.JFrame {
 
         jPanelConfiguraciones.setBackground(new java.awt.Color(133, 221, 246));
         jPanelConfiguraciones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel11.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 154, 148));
+        jLabel11.setText("Se espera una actualización para esta sección...\n");
+        jLabel11.setToolTipText("");
+        jPanelConfiguraciones.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, -1, -1));
+
         jTabbedPane1.addTab("Configuración", jPanelConfiguraciones);
 
         jPanel1.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 980, 450));
 
-        btnCerrarSesion.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        btnCerrarSesion.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
         btnCerrarSesion.setForeground(new java.awt.Color(208, 247, 255));
         btnCerrarSesion.setText("Cerrar Sesión");
         btnCerrarSesion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 234, 239), 3));
@@ -616,13 +625,7 @@ public class MenuMedico extends javax.swing.JFrame {
                 tm.addRow(o);
             }
             contarCitas();
-//
-//            if (rs.next()) {
-//                JOptionPane.showMessageDialog(null, "Hay registros en la tabla...");
-//
-//            } else {
-//                JOptionPane.showMessageDialog(null, "No hay registros en la tabla");
-//            }
+
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Error de consulta... " + ex.getMessage());
         }
@@ -700,6 +703,7 @@ public class MenuMedico extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBoxMotivoCita;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;

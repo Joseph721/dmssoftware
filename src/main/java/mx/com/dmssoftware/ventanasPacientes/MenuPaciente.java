@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.util.Random;
 
 import javax.swing.JOptionPane;
+import mx.com.dmssoftware.conexionBD.CerrarVentana;
 import mx.com.dmssoftware.conexionBD.ConexionBD;
 import mx.com.dmssoftware.dependencias.TextPrompt;
 import mx.com.dmssoftware.menuMP.MenuPrincipal;
@@ -30,7 +31,7 @@ public class MenuPaciente extends javax.swing.JFrame {
         btnMenuPrincipal.setBackground(new Color(0,67,97));
         btnRegistroPaciente.setBackground(new Color(0,67,97));
         btnSolicitarCita.setBackground(new Color(0,67,97));
-        JOptionPane.showMessageDialog(null, "Ingrese los datos correctamente");
+      //JOptionPane.showMessageDialog(null, "Ingrese los datos correctamente");
         aceptarOpcion();
         agregarTextoPrompt();
 
@@ -187,7 +188,7 @@ public class MenuPaciente extends javax.swing.JFrame {
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(0, 67, 97));
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(208, 247, 255), new java.awt.Color(208, 247, 255)));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(47, 205, 255), 3));
         jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -206,7 +207,7 @@ public class MenuPaciente extends javax.swing.JFrame {
         jPanelRegistroPaciente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(133, 221, 246)));
 
         jPanelRegistroPaciente1.setBackground(new java.awt.Color(133, 221, 246));
-        jPanelRegistroPaciente1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(133, 221, 246)));
+        jPanelRegistroPaciente1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(47, 205, 255), 3));
         jPanelRegistroPaciente1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jComboBoxTipoSangre.setBackground(new java.awt.Color(208, 247, 255));
@@ -506,7 +507,8 @@ public class MenuPaciente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        System.exit(0);
+        CerrarVentana cerrar = new CerrarVentana();
+        cerrar.cerrarVentana();
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void jComboBoxTipoSangreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTipoSangreActionPerformed

@@ -45,7 +45,7 @@
                 </descriptorRefs>
                 				<archive>
 					<manifest>
-						<mainClass>mx.com.dmssoftware.formularioMedico.LoginMedico</mainClass>
+						<mainClass>mx.com.dmssoftware.menuMP.MenuPrincipal</mainClass>
 					</manifest>
 				</archive>
             </configuration>

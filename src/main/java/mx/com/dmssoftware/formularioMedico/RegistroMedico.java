@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
+import mx.com.dmssoftware.conexionBD.CerrarVentana;
 import mx.com.dmssoftware.conexionBD.ConexionBD;
 import mx.com.dmssoftware.dependencias.TextPrompt;
 import mx.com.dmssoftware.menuMP.ClaveLogin;
@@ -341,7 +342,8 @@ public class RegistroMedico extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        System.exit(0);
+        CerrarVentana cerrar = new CerrarVentana();
+        cerrar.cerrarVentana();
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
